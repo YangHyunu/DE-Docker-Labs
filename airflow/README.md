@@ -4,7 +4,8 @@
 이 프로젝트는 Apache Airflow와 PostgreSQL을 Docker Compose로 구성하여, Airflow DAG에서 외부 API 데이터를 가져와 PostgreSQL에 저장하는 방법을 보여줍니다. 이를 통해 워크플로우 자동화와 데이터 저장 및 관리를 배울 수 있습니다.
 
 ## 시스템 아키텍처
-![시스템 아키텍처 다이어그램](your-diagram-image.png)
+![image](https://github.com/user-attachments/assets/db931d74-5241-4af6-b8f7-702de4126c36)
+
 
 ## 프로젝트 주요 특징
 1. **Airflow**: 워크플로우 스케줄링 및 관리.
@@ -207,7 +208,8 @@ with DAG(
 
 ## 스크린샷 및 이미지
 1. **Airflow 웹 UI**
-   ![alt text](image-2.png)
+   ![image](https://github.com/user-attachments/assets/eaef41af-9b3b-4024-a85e-87b55b6e3cc0)
+
 
 2. **PostgreSQL 데이터 확인**
 ```
@@ -220,10 +222,11 @@ id |                  name                   |              launch_id           
   2 | Starship | Flight 7                     | c5566f6e-606e-4250-b8f4-477c5d82c798 | https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/starship_on_the_image_20250111100520.jpg      | 2025-01-16 22:37:00
   3 | Long March 2D | PRSC-EO1                | 4c5e9d81-a4e8-41b0-b906-f335ef5c2d95 | https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/
 ```
-![alt text](image-1.png)
+![image](https://github.com/user-attachments/assets/2da4f598-432f-4a25-a5ed-f4e979c0e273)
+
 
 3. **Discord 동작 확인**
-![alt text](image-3.png)
+![image](https://github.com/user-attachments/assets/55b47c9a-a8bb-4dd5-909d-e382a7b0140f)
 
 
 ## 프로젝트 회고 및 인사이트
