@@ -1,10 +1,10 @@
-# Airflow와 PostgreSQL & Discord 연동 프로젝트
+# Airflow와 PostgreSQL 연동 프로젝트
 
 ## 프로젝트 개요
-이 프로젝트는 Apache Airflow와 PostgreSQL을 Docker Compose로 구성하여, Airflow DAG에서 외부 API 데이터를 가져와 PostgreSQL에 저장하고 이를 Discord에 전송하하는 방법을 보여줍니다. 이를 통해 워크플로우 자동화와 데이터 저장 및 관리를 배울 수 있습니다.
+이 프로젝트는 Apache Airflow와 PostgreSQL을 Docker Compose로 구성하여, Airflow DAG에서 외부 API 데이터를 가져와 PostgreSQL에 저장하는 방법을 보여줍니다. 이를 통해 워크플로우 자동화와 데이터 저장 및 관리를 배울 수 있습니다.
 
 ## 시스템 아키텍처
-![alt text](image-4.png)
+![시스템 아키텍처 다이어그램](your-diagram-image.png)
 
 ## 프로젝트 주요 특징
 1. **Airflow**: 워크플로우 스케줄링 및 관리.
@@ -58,7 +58,7 @@ docker-compose up -d
   - `net`: 발사 예정 시간 (UTC)
   - 기타 세부 정보는 JSON 형식으로 제공됩니다.
 
-#### API 응답 예시
+#### API 응답 예시 :
 ```json
 {
   "results": [
@@ -75,7 +75,6 @@ docker-compose up -d
   ]
 }
 ```
-
 ## Docker Compose 초기화 로직
 `docker-compose.yml`에는 Airflow 초기화를 위한 `airflow-init` 서비스가 포함되어 있습니다. 이 서비스는 다음 작업을 수행합니다:
 
@@ -147,11 +146,11 @@ with DAG(
 
     initialize_task >> fetch_task >> notify_task
 ```
-
 ### DAG 흐름
 1. **테이블 초기화**: PostgreSQL에 `rocket_launches` 테이블 생성.
 2. **API 데이터 가져오기**: Rocket Launches API에서 데이터를 가져와 PostgreSQL에 저장.
 3. **Discord 알림**: 가장 가까운 발사 일정을 Discord로 알림.
+
 
 ### DAG 작동 순서와 역할
 1. **initialize_schema**:
@@ -162,11 +161,12 @@ with DAG(
 2. **fetch_and_store_data**:
    - Rocket Launches API에서 데이터를 가져옵니다.
    - 데이터를 파싱하여 `rocket_launches` 테이블에 저장.
-   - 중복 데이터를 방지하기 위해 `ON CONFLICT` 구문을 사용.
+   -  `ON CONFLICT` 구문을 사용하여 중복 데이터를 방지합니다다.
 
 3. **notify_discord**:
    - 가장 최근 발사 일정과 이미지 데이터를 PostgreSQL에서 가져옵니다.
    - Discord Webhook을 사용하여 발사 일정과 이미지를 전송합니다.
+
 
 ## PostgreSQL에서 데이터 확인
 1. PostgreSQL 컨테이너 내부 접속:
@@ -210,26 +210,21 @@ with DAG(
    ![alt text](image-2.png)
 
 2. **PostgreSQL 데이터 확인**
-```sql
+```
 SELECT id, name, launch_id, image_url, net FROM rocket_launches LIMIT 3;
 ```
-```plaintext
+```
 id |                  name                   |              launch_id               |                                                    image_url                                                     |         net         
 ----+-----------------------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------+---------------------
   1 | New Glenn | Maiden Flight               | 91bfaa47-76d6-4111-9830-d6c6c46c4dab | https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/new_glenn_on_lc_image_20250111175645.jpg      | 2025-01-16 07:03:00
   2 | Starship | Flight 7                     | c5566f6e-606e-4250-b8f4-477c5d82c798 | https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/starship_on_the_image_20250111100520.jpg      | 2025-01-16 22:37:00
   3 | Long March 2D | PRSC-EO1                | 4c5e9d81-a4e8-41b0-b906-f335ef5c2d95 | https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/
 ```
-
 ![alt text](image-1.png)
 
 3. **Discord 동작 확인**
 ![alt text](image-3.png)
 
-## 향후 확장 가능성
-- 추가 데이터 소스(API)와 연동
-- Elasticsearch를 활용한 데이터 분석 및 시각화
-- Kafka를 사용한 실시간 데이터 처리
 
 ## 프로젝트 회고 및 인사이트
 
@@ -249,12 +244,7 @@ id |                  name                   |              launch_id           
    - 실제 개발: 함수 작성은 예상보다 수월
    - 장점: 기능별 분리로 디버깅과 문제해결이 용이
 
-3. **Discord 알림 기능**
-   - Webhook을 통한 간단한 알림 구현의 편리성 경험
-   - 실시간 모니터링 도구로서의 활용 가능성 확인
-   - 이미지와 텍스트를 포함한 풍부한 알림 기능 활용
-
-4. **기술적 인사이트**
+3. **기술적 인사이트**
    - 기존 curl 기반 데이터 수집에서 확장 가능성 발견
    - Kafka 스트리밍, Elasticsearch API 연동 가능성 확인
    - `&airflow-common-env`를 통한 효율적인 설정 관리 경험
