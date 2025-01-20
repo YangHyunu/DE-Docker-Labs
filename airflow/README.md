@@ -1,4 +1,4 @@
-# Airflow와 PostgreSQL 연동 프로젝트
+# Airflow와 PostgreSQL 연동 
 
 ## 프로젝트 개요
 이 프로젝트는 Apache Airflow와 PostgreSQL을 Docker Compose로 구성하여, Airflow DAG에서 외부 API 데이터를 가져와 PostgreSQL에 저장하는 방법을 보여줍니다. 이를 통해 워크플로우 자동화와 데이터 저장 및 관리를 배울 수 있습니다.
