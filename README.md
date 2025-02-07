@@ -1,16 +1,23 @@
-### Kafka [카프카 스트리밍]
-```
-Kafka/
-├── config/                         # Kafka 및 Zookeeper 설정 파일
-├── KafkaClient/                    # Kafka 클라이언트 애플리케이션
-│   ├── consumer.py                 # 메시지를 소비하는 컨슈머 스크립트
-│   ├── Dockerfile                  # 클라이언트 도커 이미지 빌드 파일
-│   ├── producer.py                 # 메시지를 생성하는 프로듀서 스크립트
-│   └── requirements.txt            # Python 의존성 패키지 목록
-├── outputs/                        # Consumer 출력 CSV 저장 경로
-└── zookeeper-data/                 # Zookeeper 데이터 저장소
-    ├── data/                       # Zookeeper 로그 및 스냅샷 저장 경로
-    │   └── version-2/
-    │       └── myid
-    └── docker-compose.yml          # Kafka & Zookeeper 컨테이너 구성 파일
-```
+# Docker 기반 데이터 엔지니어링 실습
+
+이 프로젝트는 도커를 활용하여 데이터 엔지니어링 기술을 학습하는 프로젝트입니다. 다양한 도구와 기술을 도커 컨테이너에서 실행하여 실습하며, 데이터 파이프라인 구축 및 자동화 작업을 익힙니다. 이후, Kubernetes와 같은 기술을 통해 확장할 예정입니다.
+
+## 1. 레퍼지토리 개요
+도커를 활용한 데이터 엔지니어링 기술 학습을 위한 프로젝트입니다. 다양한 도구 및 기술을 도커 컨테이너에서 실행하여 실습합니다.
+
+## 2. 목표
+이 프로젝트는 데이터 엔지니어링에 필요한 다양한 도구(예: Kafka, Spark, Elasticsearch, Airflow 등)를 도커 환경에서 연습하고, 데이터 파이프라인 구축 및 자동화 작업을 익히는 것을 목표로 합니다. 또한, 향후 Kubernetes를 도입하여 확장성과 고가용성 시스템을 구축할 예정입니다.
+
+## 3. 기술 스택
+- **Docker**
+- **Kafka**
+- **Spark**
+- **Hadoop**
+- **Elasticsearch**
+- **Airflow**
+- **Kubernetes** (향후 확장 예정)
+- **기타 데이터 엔지니어링 관련 스택들**
+
+## 4. 사용법
+각 하위 폴더의 README에 실행방법이 상세히 적혀있습니다.
+---
